@@ -1,0 +1,4 @@
+till_id,Bo_till,till_desc
+noninversion,2,"8-10 cm depth tillage (harrowing, chiseling)"
+inversion,1,moldboard plowing
+notill,4,direct seeding since exp establishment
