@@ -117,7 +117,7 @@ d7 <-
   p2 %>% 
   left_join(t4) %>%
   left_join(s6) %>% 
-  select(eu_id, ccest_year, cc_planting, cc_termination)
+  select(eu_id, ccest_year, cc_planting, cc_termination, cc_sampling)
 
 # write it ----------------------------------------------------------------
 
