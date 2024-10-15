@@ -90,7 +90,6 @@ cents_fallbio <-
   select(-year) %>% 
   arrange(eu_id, date2)
 
-
 cents_fallbio %>% 
   write_csv("data-raw/03_msmt/cents_fallbio.csv")
 
