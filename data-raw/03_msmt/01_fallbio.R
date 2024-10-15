@@ -58,7 +58,7 @@ d2 <-
 
 d3 <- 
   d2 %>% 
-  mutate(exp_year = ifelse(year == 2018, "y1_fall", "y2_fall"))
+  mutate(exp_year = ifelse(year == 2018, "y1", "y2"))
 
 
 

@@ -42,16 +42,14 @@ d1 <-
 
   
 # 2. add years/dates ----------------------------------------------------------
-#--this one is a bit difficult, year wise, and I'm not sure 
+#--this one is a bit difficult, year wise, and I'm not sure experimental year is helpful
 
 d2 <-
   d1 %>% 
   mutate(date2 = lubridate::dmy(date),
-         year = lubridate::year(date2),
-         exp_year = ifelse(year == 2018, "y1_crop", 
-                           ifelse(year==2019, "y2_crop", "y3_crop")))
+         year = lubridate::year(date2))
  
-  d2
+d2
   
   
 
@@ -75,13 +73,20 @@ d2 <-
     d3 %>% 
     mutate(yield_dry_Mgha = yield_DM/100,
            yield_15p_tonha = yield15,
-           tst = yield_dry_Mgha *1.15) %>% 
-    select(eu_id, date2, exp_year, crop, yield_dry_Mgha, yield_15p_tonha)
+           calc_yield_15p_tonha = yield_dry_Mgha *1.15) %>% 
+    select(eu_id, date2, crop, yield_dry_Mgha, yield_15p_tonha, calc_yield_15p_tonha)
 
   
-  ######STOPPED###############
-  
+
+# write it ----------------------------------------------------------------
+
+cents_cropyields <- 
   d4 %>% 
-  write_csv("data/raw/rd_cropyields.csv")
+  arrange(eu_id, date2)
+
+cents_cropyields %>% 
+  write_csv("data-raw/03_msmt/cents_cropyields.csv")
+
+usethis::use_data(cents_cropyields, overwrite = TRUE)
 
 

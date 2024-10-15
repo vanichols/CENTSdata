@@ -61,7 +61,7 @@ d3 <-
   d2 %>% 
   mutate(date2 = lubridate::dmy(date),
          year = lubridate::year(date2),
-         exp_year = ifelse(year == 2018, "y1_fall", "y2_fall"))
+         exp_year = ifelse(year == 2018, "y1", "y2"))
   
 d3  
 
@@ -79,7 +79,7 @@ d4 <-
 
 cents_fallpctcover <- 
   d4 %>% 
-  select(eu_id, date2, exp_year, cover_cat, cover_type, cover_pct) %>% 
+  select(eu_id, date2, exp_year, subrep = reg, cover_cat, cover_type, cover_pct) %>% 
   arrange(eu_id, date2)
 
 cents_fallpctcover %>% 
