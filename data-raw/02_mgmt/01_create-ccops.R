@@ -4,6 +4,7 @@
 
 library(tidyverse)
 library(lubridate)
+library(readxl)
 
 rm(list = ls())
 
@@ -18,9 +19,13 @@ draw2 <- read_excel("data-raw/Eugene/byhand_cover-crop-planting-dates.xlsx",
                      sheet = "ccterminating", skip = 5) %>% 
   select(-xx)
 
+draw3 <- read_excel("data-raw/Eugene/byhand_cover-crop-planting-dates.xlsx",
+                    sheet = "ccsampling", skip = 5) 
+
 #--to attach the cc planting dates to an eu
 eu <- read_csv("data-raw/01_keys/cents_eukey.csv")
 
+tmp.cctrt_id <- eu %>% pull(cctrt_id) %>% unique()
 
 # 1. planting -------------------------------------------------------------
 
@@ -87,17 +92,36 @@ t4 <-
   rename(cc_termination = date2) %>% 
   select(eu_id, ccest_year, cc_termination)
 
+# 5. sampling -------------------------------------------------------------
 
-# 5. combine --------------------------------------------------------------
+s5 <- 
+  draw3 %>% 
+  mutate(date = paste(year, month, day, sep = "-"),
+         cc_sampling = as_date(date)) %>% 
+  select(cc_sampling) %>% 
+  expand_grid(., tmp.cctrt_id) %>% 
+  rename(cctrt_id = tmp.cctrt_id) %>% 
+  mutate(ccest_year = year(cc_sampling))
 
-d5 <- 
+
+# 6. sampling eus ---------------------------------------------------------
+s6 <- 
+  eu %>% 
+  left_join(s5) %>% 
+  select(eu_id, ccest_year, cc_sampling)
+  
+
+# 7. combine --------------------------------------------------------------
+
+d7 <- 
   p2 %>% 
-  left_join(t4) %>% 
-  select(eu_id, cc_planting, cc_termination)
+  left_join(t4) %>%
+  left_join(s6) %>% 
+  select(eu_id, ccest_year, cc_planting, cc_termination)
 
 # write it ----------------------------------------------------------------
 
-cents_ccops <- d5
+cents_ccops <- d7
 
 cents_ccops %>% 
   write_csv("data-raw/02_mgmt/cents_ccops.csv")
