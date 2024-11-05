@@ -1,6 +1,7 @@
 ## code to prepare cents_eu (the experimental unit, the unique piece of land that receives the system treatment)
 
 # created 14 oct 2024
+# modified 5 nov 2024 - made subplot id unique by plot, as subplot 02 in plot 1 shouldn't be related to subplot 02 in plot 2
 
 
 library(readxl)
@@ -97,7 +98,7 @@ d7 <-
   mutate(eu_id = parc,
          block_id = paste0("b", block),
          plot_id = paste0("p", parc2),
-         subplot_id = paste0("sp", parc3)) %>% 
+         subplot_id = paste0(plot_id, "_sp", parc3)) %>% 
   select(eu_id, block_id, plot_id, subplot_id, till_id, rot_id, straw_id, cctrt_id) %>% 
   distinct()
 
