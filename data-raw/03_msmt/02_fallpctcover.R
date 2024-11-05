@@ -36,6 +36,7 @@ eukey <- read_csv("data-raw/01_keys/cents_eukey.csv")
 
 # 1. preprocess ------------------------------------------------
 
+#--am doing nothing with dates at this point, see section 3
 #==senss through lamss are individual weeds, they add up to weed cover
 
 d1 <- 
@@ -56,12 +57,51 @@ d2 <-
 
 # 3. add years and harvest year -------------------------------------------
 
+#--something is up with the dates
+d3a <-
+  d2 %>% 
+  mutate(date2 = lubridate::dmy(date))
+
+d3a %>% 
+  select(date2) %>% 
+  unique() %>% 
+  arrange(date2)
+
+d3a %>% 
+  filter(date2 == "2019-05-22")
+
+d3a %>% 
+  filter(is.na(value)) %>% 
+  select(date2) %>% 
+  unique() %>% 
+  arrange(date2)
+
+#--they all appear on two dates only
+library(plotly)
+ggplotly(
+d3a %>% 
+  ggplot(aes(date2, value)) +
+  geom_point())
+
+d3a %>% 
+  filter(date2 %in% c("2018-11-09", "2019-11-01")) %>% 
+  ggplot(aes(date2, value)) +
+  geom_point()
+
+d3a %>% 
+  filter(!(date2 %in% c("2018-11-09", "2019-11-01"))) %>% 
+  ggplot(aes(date2, value)) +
+  geom_point()
+
+#--ok, those are the two sample dates
+#--I don't know what the other ones are
+d3b <- 
+  d3a %>% 
+  filter(date2 %in% c("2018-11-09", "2019-11-01"))
 
 d3 <- 
-  d2 %>% 
-  mutate(date2 = lubridate::dmy(date),
-         year = lubridate::year(date2),
-         exp_year = ifelse(year == 2018, "y1", "y2"))
+  d3b %>% 
+  mutate(year = lubridate::year(date2))
   
 d3  
 
@@ -79,7 +119,7 @@ d4 <-
 
 cents_fallpctcover <- 
   d4 %>% 
-  select(eu_id, date2, exp_year, subrep = reg, cover_cat, cover_type, cover_pct) %>% 
+  select(eu_id, date2, subrep = reg, cover_cat, cover_type, cover_pct) %>% 
   arrange(eu_id, date2)
 
 cents_fallpctcover %>% 
