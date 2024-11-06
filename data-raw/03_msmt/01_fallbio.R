@@ -54,11 +54,11 @@ d2 <-
          date2, year, frac, DM)
 
 
-# 3. add experimental year ------------------------------------------------
+# 3. add experimental year (NO MORE) ------------------------------------------------
 
 d3 <- 
-  d2 %>% 
-  mutate(exp_year = ifelse(year == 2018, "y1", "y2"))
+  d2 #%>% 
+  #mutate(exp_year = ifelse(year == 2018, "y1", "y2"))
 
 
 
@@ -99,6 +99,7 @@ usethis::use_data(cents_fallbio, overwrite = TRUE)
 # small exploration -------------------------------------------------------
 
 cents_fallbio %>%
+  mutate(year = lubridate::year(date2)) %>% 
   filter(!is.na(dm_gm2)) %>% 
   ggplot(aes(dm_type)) + 
   geom_histogram(stat = "count") +
@@ -109,9 +110,10 @@ cents_fallbio %>%
 
 #--just two sampling dates, I think
 cents_fallbio %>% 
+  mutate(year = lubridate::year(date2)) %>% 
   mutate(dm_type2 = ifelse(dm_type %in% c("grass_cl", "radish"), "cover crop", dm_type)) %>% 
   ggplot(aes(eu_id, dm_gm2)) + 
-  geom_col(aes(fill = dm_type2)) + 
+  geom_col(aes(fill = dm_type2), width = 4) + 
   facet_grid(.~year) + 
   scale_fill_manual(values = c("green4", "gray80", "gray20"))
 
