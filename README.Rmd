@@ -17,6 +17,12 @@ knitr::opts_chunk$set(
 
 The goal of CENTSdata is to tidy up data from the CENTS experiment so it is easy to analyze
 
+## Collected data
+1. crop yields (2018 - spring barely, 2019 - oat, 2020 - faba bean)
+2. fall plant biomass (NOT separated by species, 2018, 2019)
+3. fall plant cover (YES separated by species, 2018, 2019)
+4. spring weed counts (dicot, monocot, cirar, equar) following fall cover crop treatment (2019 and 2020)
+
 ## Installation
 
 You can install the development version of CENTSdata from [GitHub](https://github.com/) with:
@@ -35,8 +41,6 @@ library(CENTSdata)
 
 #-You can easily access treatments, yields, weed counts, weed biomass, etc.
 head(cents_fallbio)
-
-
 
 ```
 
