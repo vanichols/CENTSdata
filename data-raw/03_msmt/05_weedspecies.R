@@ -21,28 +21,17 @@ d <-
 
 # 1. fall biomass msmts ---------------------------------------------------
 
-d1 <- 
+fcov_sp  <- 
   read_csv("data-raw/03_msmt/cents_fallpctcover.csv") %>% 
-  select(cover_type) %>% 
+  select(eppo_code) %>% 
   distinct() %>% 
-  filter(!(cover_type %in% c("soil", "volunteer")))
-
-#--remove clover, radish (do they have eppo acronyms?)
-#--deal with them separately
-fcov_sp <- 
-  d1 %>% 
-  mutate(cover_type = case_when(
-    cover_type == "radish" ~ "rapsr",
-    cover_type == "clover" ~ "trfre",
-    #cover_type == "cirss" ~ "cirar", #--in the spring this is what is recorded
-    TRUE ~ cover_type
-  )) %>% 
-  rename(eppo_code = cover_type)
+  filter(!(eppo_code %in% c("soil", "volunteer")))
 
 
 # 2. spring weed counts ---------------------------------------------------
 
 #--weird that neither cirar nor equar appear in the fall pct cover
+#--its because they were only identified to the genus in the fall pct cover
 swc <- 
   read_csv("data-raw/03_msmt/cents_spweedcount.csv") %>% 
   select(weed_type) %>% 
@@ -96,7 +85,18 @@ res3
 
 # 4. write it ----------------------------------------------------------------
 
-cents_species <- res3
+res3 %>% 
+  write_csv("data-raw/03_msmt/weed_species_fixbyhand.csv")
+
+
+# 5. fix it by hand -------------------------------------------------------
+
+res5 <- read_excel("data-raw/03_msmt/weed_species_fixedbyhand.xlsx")
+
+
+# write it ----------------------------------------------------------------
+
+cents_species <- res5
 
 cents_species %>% 
   write_csv("data-raw/03_msmt/cents_species.csv")

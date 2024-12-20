@@ -1,23 +1,11 @@
 # created 27/5/2024
 # purpose: separate data into ind data sets, clean if necessary
 # notes:
-# 1. spring weed counts following year
-# 2. fall plant biomass
-# 3. fall plant cover
-# 4. crop yields (2018 - spring barely, 2019 - oat, 2020 - faba bean)
+
+# 3. fall plant cover (separated by species, kind of)
 
 #--there are essentially two crop years of data
-# 2018 spring and fall, plus 2019 spring before planting of next crop
-# 2019 spring and fall, plus 2020 spring before planting of next crop
-# 2020 crop yields are also included
-
-#--I added an 'experimental year'
-# 2019 spring msmts (weed counts) are connected to previous year's treatments
-# exp_year y1_fall, y1_nxtsp, y2_fall, y2_nxtsp
-# crop yields will be harder, no experimental year for them I think
-
-
-#--moved to package 15 oct 2024
+# 2018 fall, 2019 fall
 
 library(tidyverse)
 library(readxl)
@@ -26,7 +14,6 @@ Sys.setenv(LANG = "en")
 rm(list = ls())
 
 #--there are 3 subreps w/in each eu
-
 
 # raw data ----------------------------------------------------------------
 
@@ -37,7 +24,9 @@ eukey <- read_csv("data-raw/01_keys/cents_eukey.csv")
 # 1. preprocess ------------------------------------------------
 
 #--am doing nothing with dates at this point, see section 3
-#==senss through lamss are individual weeds, they add up to weed cover
+#--individual weeds add up to weed cover
+#--2018 volunteers are barley (HORVW Hordeum vulgare)
+#--2019 volunteers are oats (AVESA Avena sativa)
 
 d1 <- 
   draw %>% 
@@ -115,11 +104,32 @@ d4 <-
          cover_pct = value) 
 
 
+d4 %>% 
+  ggplot(aes(cover_type, cover_pct)) +
+  geom_point() +
+  facet_grid(.~year) +
+  coord_flip()
+
+
+
+# 5. make into eppo codes -------------------------------------------------
+
+d5 <- 
+  d4 %>% 
+  mutate(eppo_code = case_when(
+    (cover_type == "volunteer" & year == 2018) ~ "horvw",
+    (cover_type == "volunteer" & year == 2019) ~ "avesa",
+    (cover_type == "clover") ~ "trfre",
+    (cover_type == "radish") ~ "rapsr",
+    TRUE ~ cover_type)
+    ) %>% 
+  select(-cover_type) 
+
 # write it ----------------------------------------------------------------
 
 cents_fallpctcover <- 
-  d4 %>% 
-  select(eu_id, date2, subrep = reg, cover_cat, cover_type, cover_pct) %>% 
+  d5 %>% 
+  select(eu_id, date2, subrep = reg, cover_cat, eppo_code, cover_pct) %>% 
   arrange(eu_id, date2)
 
 cents_fallpctcover %>% 
