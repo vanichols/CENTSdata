@@ -15,6 +15,10 @@ rm(list = ls())
 # NOTe: I don't know why I have separate datasets.
 # I think the downloading is separated (pre 2013, post 2013)
 
+# NOTE that is an internal server, not very repeatable. 
+# DMI API data could also be used
+
+
 # weather data ------------------------------------------------------------
 
 draw <- 
