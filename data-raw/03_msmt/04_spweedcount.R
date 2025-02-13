@@ -6,18 +6,6 @@
 # 3. fall plant cover
 # 4. crop yields (2018 - spring barely, 2019 - oat, 2020 - faba bean)
 
-#--there are essentially two crop years of data
-# 2018 spring and fall, plus 2019 spring before planting of next crop
-# 2019 spring and fall, plus 2020 spring before planting of next crop
-# 2020 crop yields are also included
-
-#--I added an 'experimental year'
-# 2019 spring msmts (weed counts) are connected to previous year's treatments
-# exp_year y1_fall, y1_nxtsp, y2_fall, y2_nxtsp
-# crop yields will be harder, no experimental year for them I think
-
-
-#--moved to package 15 oct 2024
 
 library(tidyverse)
 library(readxl)

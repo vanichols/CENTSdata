@@ -7,6 +7,9 @@
 #--there are essentially two crop years of data
 # 2018 fall, 2019 fall
 
+#--updated 13 feb 2025 - Bo said all cirsium sp are cirsium arvense
+#--changed eppo code to reflect this
+
 library(tidyverse)
 library(readxl)
 
@@ -121,6 +124,7 @@ d5 <-
     (cover_type == "volunteer" & year == 2019) ~ "avesa",
     (cover_type == "clover") ~ "trfre",
     (cover_type == "radish") ~ "rapsr",
+    (cover_type == "cirss") ~ "cirar",
     TRUE ~ cover_type)
     ) %>% 
   select(-cover_type) 
