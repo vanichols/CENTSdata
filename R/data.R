@@ -47,3 +47,35 @@
 #' }
 #'
 "cents_spweedcount"
+
+#' Data from Middeldatabasen on herbicides used in CENTS 2018-2020
+#'
+#' The variables are as follows:
+#'
+#' @format A data frame with 40 rows and 6 variables
+#' \describe{
+#'   \item{product}{The product name as reported in the methods and materials}
+#'   \item{load_cat}{PLI category (health, env behavior, env impact, total)}
+#'   \item{load_area}{The amount of product you have to apply per unit area to achieve a load of 1}
+#'   \item{load_area_units}{Units of the product application rate to achieve a load of 1 (liters/hectare, grams/hectare)}
+#'   \item{load_unit}{Load assigned to a unit of herbicide}
+#'   \item{load_unit_units}{B is the Danish letter for load, load per unit of herbicide (liter or gram)}
+#' }
+#'
+"cents_pliherbs"
+
+#' Data from Bo on herbicide usage, needs confirmed
+#'
+#' The variables are as follows:
+#'
+#' @format A data frame with 52 rows and 6 variables
+#' \describe{
+#'   \item{date2}{The date of the application (yyyy-mm-dd)}
+#'   \item{till_id}{Tillage treatment id (notill, noninversion, inversion)}
+#'   \item{cctrt_id}{Cover crop treatment id (mix_E, mix_M, rad_M, rad_L, nocc)}
+#'   \item{product}{Commerical herbicide product name}
+#'   \item{amount}{Amount of herbicide applied per unit area}
+#'   \item{amount_units}{Units of amount (liters per hectare, grams per hectare)}
+#' }
+#'
+"cents_herbops"

@@ -1,0 +1,53 @@
+product,load_cat,load_area,load_area_units,load_unit,load_unit_units
+Starane 333 HL,Health,4.47,l/ha,0.224,B/l
+Starane 333 HL,Environmental behaviour,2.63,l/ha,0.38,B/l
+Starane 333 HL,Environmental impact,50.1,l/ha,0.02,B/l
+Starane 333 HL,Total,1.6,l/ha,0.623,B/l
+Hussar OD,Health,13.3,l/ha,0.075,B/l
+Hussar OD,Environmental behaviour,5.8,l/ha,0.172,B/l
+Hussar OD,Environmental impact,7.33,l/ha,0.136,B/l
+Hussar OD,Total,2.61,l/ha,0.384,B/l
+Renol,Health,0,NA,0,NA
+Renol,Environmental behaviour,0,NA,0,NA
+Renol,Environmental impact,0,NA,0,NA
+Renol,Total,0,NA,0,NA
+Harmony SX,Health,0,g/ha,0,B/g
+Harmony SX,Environmental behaviour,99.9,g/ha,0.01,B/g
+Harmony SX,Environmental impact,1751,g/ha,6e-4,B/g
+Harmony SX,Total,94.5,g/ha,0.0106,B/g
+Agropol,Health,0,NA,0,NA
+Agropol,Environmental behaviour,0,NA,0,NA
+Agropol,Environmental impact,0,NA,0,NA
+Agropol,Total,0,NA,0,NA
+Metaxon,Health,2.51,l/ha,0.399,B/l
+Metaxon,Environmental behaviour,2.31,l/ha,0.434,B/l
+Metaxon,Environmental impact,5.01,l/ha,0.2,B/l
+Metaxon,Total,0.969,l/ha,1.03,B/l
+Trimmer SG,Health,3344,g/ha,3e-4,B/g
+Trimmer SG,Environmental behaviour,NA,g/ha,0.0013,B/g
+Trimmer SG,Environmental impact,5522,g/ha,2e-4,B/g
+Trimmer SG,Total,NA,g/ha,0.0018,B/g
+Stomp CS,Health,2.86,l/ha,0.35,B/l
+Stomp CS,Environmental behaviour,1.13,l/ha,0.886,B/l
+Stomp CS,Environmental impact,7.48,l/ha,0.134,B/l
+Stomp CS,Total,0.73,l/ha,1.37,B/l
+Fighter 480,Health,1.75,l/ha,0.573,B/l
+Fighter 480,Environmental behaviour,3.49,l/ha,0.287,B/l
+Fighter 480,Environmental impact,9.78,l/ha,0.102,B/l
+Fighter 480,Total,1.04,l/ha,0.962,B/l
+Agil 100 EC,Health,1.67,l/ha,0.599,B/l
+Agil 100 EC,Environmental behaviour,20.4,l/ha,0.0489,B/l
+Agil 100 EC,Environmental impact,48.3,l/ha,0.0207,B/l
+Agil 100 EC,Total,1.5,l/ha,0.668,B/l
+Starane XL,Health,2.36,l/ha,0.423,B/l
+Starane XL,Environmental behaviour,7.15,l/ha,0.14,B/l
+Starane XL,Environmental impact,NA,l/ha,0.0089,B/l
+Starane XL,Total,1.75,l/ha,0.572,B/l
+Roundup Bio,Health,0,l/ha,0,B/l
+Roundup Bio,Environmental behaviour,24.6,l/ha,0.0407,B/l
+Roundup Bio,Environmental impact,40.3,l/ha,0.0248,B/l
+Roundup Bio,Total,15.3,l/ha,0.0655,B/l
+Roundup Flex XXL,Health,0,l/ha,0,B/l
+Roundup Flex XXL,Environmental behaviour,12.8,l/ha,0.0783,B/l
+Roundup Flex XXL,Environmental impact,48,l/ha,0.0209,B/l
+Roundup Flex XXL,Total,10.1,l/ha,0.0992,B/l
