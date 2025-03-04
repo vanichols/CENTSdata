@@ -1,6 +1,6 @@
 # created 27/5/2024
 # purpose: separate data into ind data sets, clean if necessary
-# notes:
+# notes: 2 march 2025, added volunteer as a cover_cat2
 
 # 3. fall plant cover (separated by species, kind of)
 
@@ -129,11 +129,22 @@ d5 <-
     ) %>% 
   select(-cover_type) 
 
+
+# 6. recover volunteer as a cover category --------------------------------
+
+d6 <- 
+  d5 %>% 
+  mutate(cover_cat2 = ifelse(eppo_code %in% c("avesa", "horvw"),
+                             "volunteer",
+                             cover_cat),
+         cover_cat2 = ifelse(cover_cat2 == "other", "weed", cover_cat2))
+
 # write it ----------------------------------------------------------------
 
 cents_fallpctcover <- 
-  d5 %>% 
-  select(eu_id, date2, subrep = reg, cover_cat, eppo_code, cover_pct) %>% 
+  d6 %>% 
+  select(eu_id, date2, subrep = reg, cover_cat, 
+         cover_cat2, eppo_code, cover_pct) %>% 
   arrange(eu_id, date2)
 
 cents_fallpctcover %>% 

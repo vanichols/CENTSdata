@@ -2,6 +2,7 @@
 #--moved to package 14 oct 2024
 # purpose: separate data into ind data sets, clean if necessary
 # notes: It is unclear how to deal with the 2018 category of volunteers (barley), and lack of volunteer category (oats) in 2019
+#--19 feb 2025, adding subrep into final dataframe
 
 # Read about collected data in readme. This processes
 # 2. fall plant biomass (NOT separated by species, 2018, 2019)
