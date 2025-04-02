@@ -79,7 +79,7 @@ d5 <-
   d4 %>% 
   mutate(till_id = case_when(
     till == 1 ~ "inversion",
-    till == 2 ~ "noninversion",
+    till == 2 ~ "surface",
     till == 4 ~ "notill"))
 
 
