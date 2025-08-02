@@ -1,5 +1,6 @@
 # created 17 feb 2025
 # purpose: clean up herbicide application data
+# modified: 2 aug 2025, fixing till_id to be surface instead of noninversion
 
 library(tidyverse)
 library(lubridate)
@@ -46,12 +47,18 @@ p2 <-
   separate_rows(till_id, sep = ",") %>% 
   mutate_at(.vars = c("till_id", "cctrt_id"), str_squish)
   
+
+# 3. fix tillage notation to be consistent --------------------------------
+
+p3 <- 
+  p2 %>% 
+  mutate(till_id = ifelse(till_id == "noninversion", "surface", till_id))
   
 
 # write it ----------------------------------------------------------------
-cents_herbops <- p2
+cents_herbops <- p3
 
-cents_pliherbs %>% 
+cents_herbops %>% 
   write_csv("data-raw/02_mgmt/cents_herbops.csv")
 
 usethis::use_data(cents_herbops, overwrite = TRUE)
